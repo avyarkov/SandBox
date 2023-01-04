@@ -1,0 +1,17 @@
+// timeout in junit tests
+@Rule
+    public Timeout globalTimeout = Timeout.builder()
+        .withTimeout(1, MINUTES)
+        .withLookingForStuckThread(true)
+        .build();
+
+// get resource wherever it is (probably?)
+URL url = getClass().getClassLoader().getResource("GuitarIcon.png");
+if (url != null) {
+    ImageIcon imageIcon = new ImageIcon(url);
+    this.setIconImage(imageIcon.getImage());
+}
+
+// current thread sleeps for milliseconds
+Thread.sleep(200);
+

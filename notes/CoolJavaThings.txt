@@ -1,5 +1,5 @@
 // timeout in junit tests
-@Rule
+    @Rule
     public Timeout globalTimeout = Timeout.builder()
         .withTimeout(1, MINUTES)
         .withLookingForStuckThread(true)
@@ -14,4 +14,6 @@ if (url != null) {
 
 // current thread sleeps for milliseconds
 Thread.sleep(200);
+
+// -7 % 5 = -2       might use       Math.floorMod(-7, 5) = 3
 

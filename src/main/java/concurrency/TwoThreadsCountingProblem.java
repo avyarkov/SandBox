@@ -87,7 +87,7 @@ public class TwoThreadsCountingProblem {
         thread6.join();
         finish = System.nanoTime();
 
-        System.out.println(countingRunnableWithAtomicInteger.count);
+        System.out.println(countingRunnableWithVolatileIntegerAndAtomicFieldUpdater.count);
         System.out.println(Duration.ofNanos(finish - start).toMillis() + " milliseconds");
     }
 }

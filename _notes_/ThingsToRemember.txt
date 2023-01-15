@@ -1,0 +1,7 @@
+Two of the components of a method declaration comprise the method signature — the method's name and the parameter types.
+public class StaticAndNonStaticMethodsWithTheSameSignature {
+    public void method(int n) {}
+    public static void method(int n) {}
+}
+entails error: 'method(int)' is already defined in '_sandbox_.StaticAndNonStaticMethodsWithTheSameSignature'
+

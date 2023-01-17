@@ -5,3 +5,7 @@ public class StaticAndNonStaticMethodsWithTheSameSignature {
 }
 entails error: 'method(int)' is already defined in '_sandbox_.StaticAndNonStaticMethodsWithTheSameSignature'
 
+This is how to invoke a default interface method.
+Interface.super.method();
+This can be used to solve the diamond problem with interface extension and default interface methods.
+[[[_sandbox_.DefaultInterfaceMethodInvocation, _sandbox_.DiamondProblemWithDefaultInterfaceMethods]]]

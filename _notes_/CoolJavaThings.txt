@@ -17,3 +17,6 @@ Thread.sleep(200);
 
 // -7 % 5 = -2       might use       Math.floorMod(-7, 5) = 3
 
+// var bd = new BigDecimal(1.0 * 123456 / 100000).setScale(3, RoundingMode.HALF_UP);
+// System.out.println(bd); -> 1.235
+

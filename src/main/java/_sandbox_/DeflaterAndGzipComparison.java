@@ -1,10 +1,10 @@
 package _sandbox_;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.zip.DeflaterOutputStream;
-import java.util.zip.GZIPOutputStream;
+import java.util.zip.*;
 
 public class DeflaterAndGzipComparison {
 
@@ -45,6 +45,35 @@ public class DeflaterAndGzipComparison {
             System.out.println("input: " + inputBytes.length +
                     ", deflater: " + deflaterOutputBytes.length +
                     ", gzip: " + gzipOuputBytes.length);
+
+            byte[] inflatedBytes;
+            try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
+                try (InflaterOutputStream ios = new InflaterOutputStream(baos)) {
+                    ios.write(deflaterOutputBytes);
+                }
+                inflatedBytes = baos.toByteArray();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            String inflatedString = new String(inflatedBytes, StandardCharsets.UTF_8);
+            System.out.println(string.equals(inflatedString));
+
+            byte[] gzipDecompressedBytes;
+            try (ByteArrayInputStream bais = new ByteArrayInputStream(gzipOuputBytes)) {
+                try (GZIPInputStream gzipis = new GZIPInputStream(bais)) {
+                    try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
+                        int buf;
+                        while ((buf = gzipis.read()) != -1) {
+                            baos.write(buf);
+                        }
+                        gzipDecompressedBytes = baos.toByteArray();
+                    }
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            String gzipDecompressedString = new String(gzipDecompressedBytes);
+            System.out.println(string.equals(gzipDecompressedString));
         }
 
     }

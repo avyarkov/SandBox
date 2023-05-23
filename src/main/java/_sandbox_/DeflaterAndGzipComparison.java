@@ -73,7 +73,18 @@ public class DeflaterAndGzipComparison {
                 throw new RuntimeException(e);
             }
             String gzipDecompressedString = new String(gzipDecompressedBytes);
-            System.out.println(string.equals(gzipDecompressedString));
+            System.out.print(string.equals(gzipDecompressedString) + " ");
+
+            byte[] gzipDecompressedBytes2;
+            try (ByteArrayInputStream bais = new ByteArrayInputStream(gzipOuputBytes)) {
+                try (GZIPInputStream gzipis = new GZIPInputStream(bais)) {
+                    gzipDecompressedBytes2 = gzipis.readAllBytes();
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            String gzipDecompressedString2 = new String(gzipDecompressedBytes2);
+            System.out.println(string.equals(gzipDecompressedString2));
         }
 
     }

@@ -14,5 +14,20 @@ public class ArrayAsObject {
         System.out.println(b.hashCode());
         System.out.println(Arrays.hashCode(b));
         System.out.println(Objects.hash(1, 2, 3));
+
+        System.out.println("~~~~~~~");
+        runArrayStoreExceptionExample();
+    }
+
+    @SuppressWarnings("ALL")
+    public static void runArrayStoreExceptionExample() {
+        Integer[] a = {1, 2, 3};
+        Number[] b = a;
+        System.out.println(a.getClass() + " " + b.getClass());
+
+        Double d = 1.5;
+
+        // Throws ArrayStoreException
+        b[0] = d;
     }
 }

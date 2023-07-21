@@ -2,6 +2,7 @@ package _sandbox_;
 
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.function.IntFunction;
 
 public class ArrayAsObject {
     public static void main(String[] args) {
@@ -16,7 +17,15 @@ public class ArrayAsObject {
         System.out.println(Objects.hash(1, 2, 3));
 
         System.out.println("~~~~~~~");
+        runIntArrayAsParameterizedTypeExample();
+        System.out.println("~~~~~~~");
         runArrayStoreExceptionExample();
+    }
+
+    public static void runIntArrayAsParameterizedTypeExample() {
+        IntFunction<int[]> f = int[]::new;
+        var a = f.apply(4);
+        System.out.println(Arrays.toString(a));
     }
 
     @SuppressWarnings("ALL")

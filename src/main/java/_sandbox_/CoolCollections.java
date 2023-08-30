@@ -15,6 +15,8 @@ public class CoolCollections {
         System.out.println("-------");
         sub();
         System.out.println("-------");
+        collectionsAlgs();
+        System.out.println("-------");
         collections();
     }
 
@@ -86,8 +88,32 @@ public class CoolCollections {
         arrayList.add("a");
         arrayList.add("b");
         System.out.println(arrayList);
-        var list = Collections.unmodifiableList(arrayList);
+
+        var unmodifiableList = Collections.unmodifiableList(arrayList);
         //noinspection DataFlowIssue
-        list.add("c");
+        unmodifiableList.add("c");
+
+        var synchronizedList = Collections.synchronizedList(arrayList);
+        synchronizedList.add("d");
+    }
+
+    @SuppressWarnings("ResultOfMethodCallIgnored")
+    private static void collectionsAlgs() {
+        var list = new ArrayList<>(List.of("aa", "bb", "cc", "dd"));
+
+        Collections.binarySearch(list, "bb");
+        Collections.frequency(list, "bb");
+
+        Collections.reverse(list);
+        Collections.shuffle(list);
+
+        Collections.swap(list, 0, 1);
+        Collections.rotate(list, 2);
+
+        Collections.sort(list);
+        Collections.fill(list, "xx");
+
+        Collections.min(list);
+        Collections.max(list);
     }
 }
